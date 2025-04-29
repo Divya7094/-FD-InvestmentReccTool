@@ -1,0 +1,11 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using WisVestAPI.Models.DTOs;
+
+namespace WisVestAPI.Services.Interfaces
+{
+    public interface IAllocationService
+    {
+        Task<Dictionary<string, double>?> CalculateFinalAllocation(UserInputDTO input);
+    }
+}
