@@ -1,0 +1,38 @@
+<div class="hjk">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top px-4">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="assets/logo1.jfif" alt="WisVest Logo" class="logo-img" />
+          WisVest
+        </a>
+        <div class="d-flex gap-3">
+          <button class="btn btn-outline-primary btn-rounded"  (click)="home()">Home</button>
+          <button class="btn btn-danger btn-rounded" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+  <div class="container py-4 ggg mt-5" >
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+      <h2 class="text-center mb-4">Our Investment Products</h2>
+          <div class="search-bar mb-3">
+          <input type="text" class="form-control" placeholder="Search by product name or asset class" [(ngModel)]="searchTerm"/>
+        </div>
+      <div class="row">
+        <div class="col-md-6" *ngFor="let product of filteredProducts">          
+
+          <div class="product-card">
+            <h5>{{ product.name }}</h5>
+
+
+            <span class="badge" >{{ product.type }}</span>
+            <p><strong>Asset Class:</strong> {{ product.assetClass }}</p>
+                  <p><strong>Annual Return:</strong> {{ product.return }}</p>
+                  <p class="description">{{ product.description }}</p>
+                </div>
+            </div>
+          </div>
+        </div>          
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

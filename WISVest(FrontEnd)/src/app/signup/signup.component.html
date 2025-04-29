@@ -1,0 +1,65 @@
+<div class="signup-card">
+  <div class="text-center">
+    <img src="assets/logo1.jfif" alt="WisVest Logo" class="logo" />
+  </div>
+  <h2>Create Your Account</h2>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input id="firstName" type="text" formControlName="firstName" class="form-control" />
+      <div class="error" *ngIf="signupForm.get('firstName')?.touched && signupForm.get('firstName')?.invalid">
+        First Name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input id="lastName" type="text" formControlName="lastName" class="form-control" />
+      <div class="error" *ngIf="signupForm.get('lastName')?.touched && signupForm.get('lastName')?.invalid">
+        Last Name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input id="email" type="email" formControlName="email" (blur)="checkEmailExists()" class="form-control" />
+      <div class="error" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+        Enter a valid Email.
+      </div>
+      <div class="error" *ngIf="emailExists">
+        Email already exists.
+      </div>
+      <div *ngIf="isCheckingEmail" class="checking">
+        Checking email...
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" type="password" formControlName="password" class="form-control" />
+      <div class="error" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+        Password must be at least 8 characters and include upper, lower, number, and special character.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control" />
+      <div class="error" *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="isSubmitting" class="btn btn-green">Sign Up</button>
+  </form>
+
+  <p class="form-text mt-3">
+    Already have an account? <a routerLink="/login" class="text-success">Login</a>
+  </p>
+
+  <div *ngIf="showSuccessModal" class="modal-success">
+    <p>Signup successful!</p>
+    <button (click)="closeModal()" class="btn btn-success">Go to Login</button>
+  </div>
+</div>

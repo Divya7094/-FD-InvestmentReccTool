@@ -1,0 +1,70 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(358deg, #aeffd2 0%, #c0eb70 100%);
+    color: #1b4332;
+  }
+  
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .navbar-brand {
+    color: #2d6a4f;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 17rem;
+    background-image: linear-gradient(358deg, #aeffd2 0%, #c0eb70 100%);
+  }
+  
+  .hero h1 {
+    font-size: 3.2rem;
+    color: #1b4332;
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+    color: #3c4f4c;
+  }
+  
+  .btn-rounded {
+    border-radius: 30px;
+  }
+  
+  .feature-section {
+    background-color: #ffffff;
+    padding: 3rem 1rem;
+    border-radius: 20px;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+  
+  .feature-card {
+    background-color: #f8fff9;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .carousel-item.active .feature-card {
+    transform: scale(1.05);
+    background-color: #D7F7D4;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  

@@ -1,0 +1,145 @@
+<div class="form-card-container">
+  <nav class="navbar navbar-expand-lg navbar-light px-4">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/logo1.jfif" alt="WisVest Logo" class="logo-img" />
+      WisVest
+    </a>
+    <div class="ms-auto d-flex gap-3">
+      <button class="btn btn-outline-primary btn-rounded" (click)="home(); speakText('Home Button')">Home</button>
+      <button class="btn btn-outline-success btn-rounded" (click)="products(); speakText('Products Button')">Products</button>
+      <button class="btn btn-danger btn-rounded" (click)="logout(); speakText('Logout Button')">Logout</button>
+    </div>
+  </nav>
+
+  <section class="pt-4 pb-5">
+    <div class="container">
+      <div class="form-card">
+        <h2>Enter Your Investment Details</h2>
+        <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+
+          <!-- Goal -->
+          <div class="form-group">
+            <label for="goal" class="form-label">Goal</label>
+            <select
+              id="goal"
+              formControlName="goal"
+              class="form-select"
+              (focus)="speakText('Goal')"
+              (change)="speakText('You selected ' + investmentForm.get('goal')?.value)"
+              [ngClass]="{'is-invalid': investmentForm.get('goal')?.invalid && investmentForm.get('goal')?.touched}">
+              <option value="" disabled selected>Select your goal</option>
+              <option value="Emergency Fund">Emergency Fund</option>
+              <option value="Retirement">Retirement</option>
+              <option value="Wealth Accumulation">Wealth Accumulation</option>
+              <option value="Child's Education">Child's Education</option>
+              <option value="Big Purchase">Big Purchase</option>
+            </select>
+            <div *ngIf="investmentForm.get('goal')?.invalid && investmentForm.get('goal')?.touched" class="invalid-feedback">
+              Goal is required.
+            </div>
+          </div>
+
+          <!-- Age -->
+          <div class="form-group">
+            <label for="age" class="form-label">Age</label>
+            <input
+              type="number"
+              id="age"
+              formControlName="age"
+              class="form-control"
+              placeholder="Enter age (18 - 100)"
+              min="18" max="100"
+              (focus)="speakText('Age')"
+              (input)="speakText('You entered age ' + investmentForm.get('age')?.value)"
+              [ngClass]="{'is-invalid': investmentForm.get('age')?.invalid && investmentForm.get('age')?.touched}">
+            <div *ngIf="investmentForm.get('age')?.invalid && investmentForm.get('age')?.touched" class="invalid-feedback">
+              <small *ngIf="investmentForm.get('age')?.errors?.['required']">Age is required.</small>
+              <small *ngIf="investmentForm.get('age')?.errors?.['min']">Minimum age is 18.</small>
+              <small *ngIf="investmentForm.get('age')?.errors?.['max']">Maximum age is 100.</small>
+            </div>
+          </div>
+
+          <!-- Horizon -->
+          <div class="form-group">
+            <label class="form-label">Investment Horizon</label>
+            <div class="btn-group w-100" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="selectHorizon('Short'); speakText('You selected Short Investment Horizon')"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Short'">
+                Short
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="selectHorizon('Moderate'); speakText('You selected Moderate Investment Horizon')"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Moderate'">
+                Moderate
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="selectHorizon('Long'); speakText('You selected Long Investment Horizon')"
+                [class.active]="investmentForm.get('investmentHorizon')?.value === 'Long'">
+                Long
+              </button>
+            </div>
+          </div>
+
+          <!-- Risk -->
+          <div class="form-group">
+            <label class="form-label">Risk Tolerance</label>
+            <div class="btn-group w-100" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="selectRisk('Low'); speakText('You selected Low Risk Tolerance')"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'Low'">
+                Low
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-warning"
+                (click)="selectRisk('Medium'); speakText('You selected Medium Risk Tolerance')"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'Medium'">
+                Medium
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                (click)="selectRisk('High'); speakText('You selected High Risk Tolerance')"
+                [class.active]="investmentForm.get('riskTolerance')?.value === 'High'">
+                High
+              </button>
+            </div>
+          </div>
+
+          <!-- Target Amount -->
+          <div class="form-group">
+            <label for="amount" class="form-label">Target Amount</label>
+            <input
+              type="number"
+              id="amount"
+              formControlName="targetAmount"
+              class="form-control"
+              placeholder="Enter target amount"
+              min="10000"
+              (focus)="speakText('Target Amount')"
+              (input)="speakText('You entered target amount ' + investmentForm.get('targetAmount')?.value)"
+              [ngClass]="{'is-invalid': investmentForm.get('targetAmount')?.invalid && investmentForm.get('targetAmount')?.touched}">
+            <div *ngIf="investmentForm.get('targetAmount')?.invalid && investmentForm.get('targetAmount')?.touched" class="invalid-feedback">
+              <small *ngIf="investmentForm.get('targetAmount')?.errors?.['required']">Target amount is required.</small>
+              <small *ngIf="investmentForm.get('targetAmount')?.errors?.['min']">Minimum target amount is ₹10,000.</small>
+            </div>
+          </div>
+
+          <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success w-100" [disabled]="investmentForm.invalid" (click)="speakText('Submit Button')">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
